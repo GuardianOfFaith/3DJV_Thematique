@@ -10,9 +10,12 @@ public class player2Controller : MonoBehaviour
 	[SerializeField] private Rigidbody2D rbSpatialShip;
 	[SerializeField] private float speed = 10f;
 	[SerializeField] private fire2Script fire;
+    [SerializeField] private GameObject adv;
+    [SerializeField] private GameObject us;
 
-	private Vector2 move = Vector2.zero;
-    public int rand;
+    private Vector2 move = Vector2.zero;
+    public int rand; //random pour routine random
+    public int i; //pour tester les capacités de la RR sur la durée
 	private bool facingDirection=true;
 	
 	void Update ()
@@ -73,5 +76,22 @@ public class player2Controller : MonoBehaviour
                 move.x = 1;
                 break;
         }
+    }
+
+    void RRAgent()
+    {
+        //observe
+        int y = 0;
+        GameObject advClone = Instantiate(GameObject.FindWithTag("Player1"));
+        GameObject usClone = Instantiate(GameObject.FindWithTag("Player2"));
+
+        while (y < i){
+
+            advClone.GetComponent<player2Controller>().random();
+            usClone.GetComponent<player2Controller>().random();
+        }
+
+        Destroy(adv);
+        Destroy(us);
     }
 }

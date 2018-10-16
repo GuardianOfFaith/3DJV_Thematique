@@ -31,8 +31,6 @@ public class Transition : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(rD[1 - arena]);
-        Debug.Log(rO[1 - arena]);
         if (arena == 0 && this.CompareTag("TriggerOff") && col.CompareTag("Player1"))
         {
             // 0>1 Player 1 avance, player 2 est replacé
