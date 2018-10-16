@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class Transition : MonoBehaviour {
 
     void Start()
     {
+       
         arena = 0; //Centre l'arène
         cam = Camera.main;
         i = 11; //déplacement d'arène a arène pour la camera
@@ -24,38 +26,41 @@ public class Transition : MonoBehaviour {
         p2 = GameObject.FindWithTag("Player2");
         rD = GameObject.FindGameObjectsWithTag("RespawnDef"); //recuperer les spawners de chaque joueurs
         rO = GameObject.FindGameObjectsWithTag("RespawnOff");
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        
+        Debug.Log(rD[1 - arena]);
+        Debug.Log(rO[1 - arena]);
         if (arena == 0 && this.CompareTag("TriggerOff") && col.CompareTag("Player1"))
         {
             // 0>1 Player 1 avance, player 2 est replacé
             cam.transform.position = new Vector3(cam.transform.position.x + i, cam.transform.position.y, cam.transform.position.z);
-            p2.transform.position = rD[1 - arena].transform.position;
             arena++;
+            p2.transform.position = rD[1 - arena].transform.position;
         }
         else if (arena == 1 && this.CompareTag("TriggerOff") && col.CompareTag("Player2"))
         {
             // 1>0 Player 1 est replacé, Player 2 avance
             cam.transform.position = new Vector3(cam.transform.position.x - i, cam.transform.position.y, cam.transform.position.z);
-            p1.transform.position = rO[1 - arena].transform.position;
             arena--;
+            p1.transform.position = rO[1 - arena].transform.position;
         }
         else if (arena == 0 && this.CompareTag("TriggerDef") && col.CompareTag("Player2"))
         {
             // 0>-1 Player 1 est replacé, Player 2 avance
             cam.transform.position = new Vector3(cam.transform.position.x - i, cam.transform.position.y, cam.transform.position.z);
-            p1.transform.position = rO[1 - arena].transform.position;
             arena--;
+            p1.transform.position = rO[1 - arena].transform.position;    
         }
         else if (arena == -1 && this.CompareTag("TriggerDef") && col.CompareTag("Player1"))
         {
             // -1>0 Player 1 Avance, Player 2 est replacé
             cam.transform.position = new Vector3(cam.transform.position.x + i, cam.transform.position.y, cam.transform.position.z);
-            p2.transform.position = rD[1 - arena].transform.position;
             arena++;
+            p2.transform.position = rD[1 - arena].transform.position;
+            
         }
         else
         {
