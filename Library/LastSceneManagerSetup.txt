@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/USER/Documents/4A 3DJV/GIT/2018-3A-BumpRoyaleWithoutZenject/Assets/Scenes/MainScene.unity
+- path: Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
