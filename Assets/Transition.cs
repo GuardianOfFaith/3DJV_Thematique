@@ -62,12 +62,12 @@ public class Transition : MonoBehaviour {
         if (arena == -1 && this.tag == ("TriggerDef") && col.CompareTag("Player2")/* && TODO DOMINATE*/)
         {
             //Player 2 Gagne
-            //TODO CALL LOSE
+            p1.SendMessage("Lose");
         }
         if (arena == 1 && this.tag == ("TriggerOff") && col.CompareTag("Player1")/* && TODO DOMINATE*/)
         {
             //Player 1 Gagne
-            //TODO CALL WIN;
+            p1.SendMessage("Win");
         }
     }
 
