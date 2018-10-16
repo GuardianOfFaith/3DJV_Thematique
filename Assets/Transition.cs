@@ -12,49 +12,61 @@ public class Transition : MonoBehaviour {
     public GameObject p2;
     public GameObject S1;
     public GameObject S2;
+    public GameObject[] rD;
+    public GameObject[] rO;
 
     void Start()
     {
-        arena = 0;
+        arena = 0; //Centre l'arène
         cam = Camera.main;
-        p1 = GameObject.FindWithTag("Player1");
+        i = 11; //déplacement d'arène a arène pour la camera
+        p1 = GameObject.FindWithTag("Player1"); //recuperer les joueurs
         p2 = GameObject.FindWithTag("Player2");
-        i = 11;
+        rD = GameObject.FindGameObjectsWithTag("RespawnDef"); //recuperer les spawners de chaque joueurs
+        rO = GameObject.FindGameObjectsWithTag("RespawnOff");
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (arena == 0 && this.tag == ("TriggerOff") && col.CompareTag("Player1")/* && TODO DOMINATE*/)
         {
+            // 0>1 Player 1 avance, player 2 est replacé
             cam.transform.position = new Vector3(cam.transform.position.x + i, cam.transform.position.y, cam.transform.position.z);
-            //SetPosition to P2
+            p2.transform.position = rD[1-arena].transform.position;
             arena++;
         }
         if (arena == 1 && this.tag == ("TriggerOff") && col.CompareTag("Player2")/* && TODO DOMINATE*/)
         {
+            // 1>0 Player 1 est replacé, Player 2 avance
             cam.transform.position = new Vector3(cam.transform.position.x - i, cam.transform.position.y, cam.transform.position.z);
-            //SetPosition to P1
+            p1.transform.position = rO[1 - arena].transform.position;
             arena--;
         }
         if (arena == 0 && this.tag == ("TriggerDef") && col.CompareTag("Player2")/* && TODO DOMINATE*/)
         {
+            // 0>-1 Player 1 est replacé, Player 2 avance
             cam.transform.position = new Vector3(cam.transform.position.x - i, cam.transform.position.y, cam.transform.position.z);
-            //SetPosition to P1
+            p1.transform.position = rO[1 - arena].transform.position;
             arena--;
         }
         if (arena == -1 && this.tag == ("TriggerDef") && col.CompareTag("Player1")/* && TODO DOMINATE*/)
         {
+            // -1>0 Player 1 Avance, Player 2 est replacé
             cam.transform.position = new Vector3(cam.transform.position.x - i, cam.transform.position.y, cam.transform.position.z);
-            //SetPosition to P1
+            p2.transform.position = rD[1 - arena].transform.position;
             arena++;
         }
 
         if (arena == -1 && this.tag == ("TriggerDef") && col.CompareTag("Player2")/* && TODO DOMINATE*/)
         {
+            //Player 2 Gagne
             //TODO CALL LOSE
         }
         if (arena == 1 && this.tag == ("TriggerOff") && col.CompareTag("Player1")/* && TODO DOMINATE*/)
         {
+            //Player 1 Gagne
             //TODO CALL WIN;
         }
     }
