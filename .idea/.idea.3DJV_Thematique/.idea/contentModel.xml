@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\USER\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_3DJV_Thematique.-878835613.00" t="ExcludeRecursive" />
+    <e p="C:\Users\USER\Documents\4A 3DJV\Projet Semaine Thématique\3DJV_Thematique" t="IncludeRecursive">
+      <e p="3DJV_Thematique.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="Editor" t="Include">
+            <e p="JetBrains" t="Include">
+              <e p="Unity3DRider.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Script" t="Include">
+          <e p="fire2Script.cs" t="Include" />
+          <e p="fireScript.cs" t="Include" />
+          <e p="inputManagerScript.cs" t="Include" />
+          <e p="player2Controller.cs" t="Include" />
+          <e p="playerController.cs" t="Include" />
+          <e p="randomAgentScript.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
