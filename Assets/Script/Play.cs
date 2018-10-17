@@ -2,57 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class Play : MonoBehaviour {
+public class play : MonoBehaviour {
 
     public Dropdown m_player1;
     public Dropdown m_player2;
     public Button butt;
-    private string test;
+    public int var_p1;
+    public int var_p2;
 
     // Use this for initialization
     void Start()
     {
-        butt.onClick.AddListener(onClick);
+         butt.onClick.AddListener(onClick);
+         DontDestroyOnLoad(this);
     }
     
-    void onClick () {
-        test = m_player1.options[m_player1.value].text;
-        if (test == "Human")
-        {
-
-        }
-        if (test == "Random")
-        {
-
-        }
-        if (test == "RollOut")
-        {
+     void onClick () {
+        var_p1 = m_player1.value;
+        var_p2 = m_player2.value;
         
-        }
-        if (test == "Disjkstra")
-        {
-
-        }
-        
-        test = m_player2.options[m_player2.value].text;
-        
-        if (test == "Human")
-        {
-
-        }
-        if (test == "Random")
-        {
-
-        }
-        if (test == "RollOut")
-        {
-
-        }
-        if (test == "Disjkstra")
-        {
-
-        }
+        SceneManager.LoadSceneAsync("SampleSceneTesttrigger");
 
     }
 }

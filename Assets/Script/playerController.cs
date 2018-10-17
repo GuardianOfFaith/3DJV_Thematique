@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerController : MonoBehaviour
 {
@@ -11,10 +13,24 @@ public class playerController : MonoBehaviour
 	[SerializeField] private float speed = 10f;
 	[SerializeField] private fireScript fire;
 
+    
 	private Vector2 move = Vector2.zero;
-	
 	private bool facingDirection=true;
-	
+    public Text t_win;
+    
+    void Start()
+    {
+        t_win.text = "";
+        StartPlay(GameObject.Find("GameMods").GetComponent<play>().var_p1);
+    }
+
+    //Select gameMode depuis le menu principal
+    void StartPlay(int gamemode)
+    {
+        //set Script 
+        
+    }
+
 	void Update ()
 	{		
 		move.x = Input.GetAxis("HorizontalX2");
@@ -49,4 +65,22 @@ public class playerController : MonoBehaviour
 		facingDirection = !facingDirection;
 	}
 
+
+    void Win()
+    {
+        t_win.text = "Player 1 won !";
+        Invoke("returnMenu", 5.0f);
+    }
+
+    void Lose()
+    {
+        t_win.text = "Player 2 won !";
+        Invoke("returnMenu", 5.0f);
+    }
+
+    void returnMenu()
+    {
+        Destroy(GameObject.Find("GameMods"));
+        SceneManager.LoadScene("SampleScene");
+    }
 }
