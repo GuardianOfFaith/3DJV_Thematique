@@ -13,8 +13,9 @@ public class HumanAgentController : MonoBehaviour
 	[SerializeField] private float stepPerFrame;
 	[SerializeField] private GameObject bullet;
 	[SerializeField] private Transform spawnBullet;
-	
-	private float x=0f;
+    [SerializeField] private bool left;
+
+    private float x=0f;
 	private float y=0f;
 
 	private bool Collision = false;
@@ -33,12 +34,6 @@ public class HumanAgentController : MonoBehaviour
 
 	private void Update()
 	{
-		
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			//Shoot();
-		}
-
 		if (Collision)
 		{
 			if (normalX > 0) //à gauche
@@ -65,34 +60,70 @@ public class HumanAgentController : MonoBehaviour
 		}
 		else if(!Collision)
 		{
-			
-			InputSpaceShip();
-			spaceShip.position= new Vector2(x,y);
+
+            if (left)
+            {
+                InputSpaceShip();
+            }
+            else
+            {
+                InputSpaceShip2();
+            }
+            spaceShip.position= new Vector2(x,y);
 		}
 	}
 
 	private void InputSpaceShip()
 	{
-		if (Input.GetKey(KeyCode.UpArrow))
+		if (Input.GetKey(KeyCode.Z))
 		{
 			y += stepPerFrame;
 		}
-		if (Input.GetKey(KeyCode.DownArrow))
+		if (Input.GetKey(KeyCode.S))
 		{
 			y -= stepPerFrame;
 		}
-		if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey(KeyCode.Q))
 		{
 			x -= stepPerFrame;
 		}
-		if (Input.GetKey(KeyCode.RightArrow))
+		if (Input.GetKey(KeyCode.D))
 		{
 			x += stepPerFrame;
-		}	
-		
-	}
+		}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Shoot();
+        }
 
-	private void OnEnable()
+    }
+
+    private void InputSpaceShip2()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            y += stepPerFrame;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            y -= stepPerFrame;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            x -= stepPerFrame;
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            x += stepPerFrame;
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            //Shoot();
+        }
+    }
+
+
+    private void OnEnable()
 	{
 		CollisionScript.SendIsCollision += OnReceive;
 	}

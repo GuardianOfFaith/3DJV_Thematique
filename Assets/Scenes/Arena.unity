@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 170112051}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876b124b19d4a074ba5adfaeff7d44ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 520849213d83a3f4984735056a709804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 170112054}
@@ -247,11 +247,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 170112051}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91418455f25badc40a546a53ced44f7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 14131c29f48ba504ab559e07a5a1acba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 170112054}
   stepPerFrame: 0.1
+  bullet: {fileID: 0}
+  spawnBullet: {fileID: 0}
   left: 0
 --- !u!1 &313074604
 GameObject:
@@ -281,11 +283,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 313074604}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91418455f25badc40a546a53ced44f7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 14131c29f48ba504ab559e07a5a1acba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 313074608}
   stepPerFrame: 0.1
+  bullet: {fileID: 0}
+  spawnBullet: {fileID: 0}
   left: 1
 --- !u!114 &313074606
 MonoBehaviour:
@@ -388,7 +392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 313074604}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876b124b19d4a074ba5adfaeff7d44ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 520849213d83a3f4984735056a709804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 313074608}
