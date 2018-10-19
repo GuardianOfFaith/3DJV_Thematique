@@ -24,7 +24,7 @@ public class HumanAgentController : MonoBehaviour
         }
         else
         {
-            InputSpaceShip();
+            InputSpaceShip2();
         }
 		spaceShip.position= new Vector2(x,y);	
 	}
@@ -43,7 +43,7 @@ public class HumanAgentController : MonoBehaviour
         {
             x -= stepPerFrame;
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.D))
         {
             x += stepPerFrame;
         }
