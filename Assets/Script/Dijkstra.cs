@@ -20,6 +20,18 @@ public class Dijkstra : MonoBehaviour {
     public bool chase;
     public bool leftside;
 
+    public struct sp //structure du vaisseaux
+    {
+        public float x, y;
+
+        public sp(float i, float j)
+        {
+            x = i;
+            y = j;
+        }
+
+    }
+
     void Awake () {
         chase = true;
         x = spaceShip.position.x;
@@ -34,21 +46,20 @@ public class Dijkstra : MonoBehaviour {
     void DijkstraAgent() //sortir du graph si l'on tue ou change d'écran
     {
         //save etat du jeu
-        float xa = spaceShip2.position.x;
-        float ya = spaceShip2.position.y;
+        //sp s1 = new sp(spaceShip.position.x, spaceShip.position.y);
         int action;
-        int[] list = new int[8];
+        List<int> list = new List<int>();
+        /*
         //créer graph et explorer
-        for (int i =0; i<8;i++)
+        for (int i =0; i<4;i++)
         {
             list[i] = 0;
-        }
+        }*/
         //appel recursif
         action = DijkstraRec(list);
         //recupérer meilleur chemin
-
-        //choisir action
         Debug.Log(action);
+        //choisir action
         switch (action)
         {
             case 0:         //UP
@@ -63,21 +74,24 @@ public class Dijkstra : MonoBehaviour {
             case 3:         //LEFT
                 x -= stepPerFrame;
                 break;
+            case 4:
+                break;            
         }
         spaceShip.position = new Vector2(x, y);
     }
 
     //list nodes dois comporté le cout de l'arc et la node parent
-    int DijkstraRec(int[] listNodes)
+    int DijkstraRec(List<int> listNodes)
     {
-        
+        //save etat du jeu
+        //sp s1 = new sp(spaceShip.position.x, spaceShip.position.y);
+
         int tmp = 0;
         int cost = 1000;
-        int[] listtmp = new int[100];
+        List<int> listtmp = new List<int>();
         int tt = 0;
-        foreach (int var in listNodes)
+        for (int vari = 0;vari <listNodes.Count;vari++)
         {
-            
             for (tmp = 0; tmp < 5; tmp++)
             {
                 
@@ -96,6 +110,7 @@ public class Dijkstra : MonoBehaviour {
                         {
                             cost = 2;
                         }
+                       // s1.y += stepPerFrame;
                         break;
                     case 1: //down
                         if (vec1.y > vec2.y && chase)
@@ -110,6 +125,7 @@ public class Dijkstra : MonoBehaviour {
                         {
                             cost = 2;
                         }
+                        //s1.y -= stepPerFrame;
                         break;
                     case 2:         //RIGHT
                         if (leftside)
@@ -134,6 +150,7 @@ public class Dijkstra : MonoBehaviour {
                                 cost = 5;
                             }
                         }
+                        //s1.x += stepPerFrame;
                         break;
                     case 3:         //LEFT
                         if (leftside)
@@ -158,6 +175,7 @@ public class Dijkstra : MonoBehaviour {
                                 cost = 1;
                             }
                         }
+                        //s1.x -= stepPerFrame;
                         break;              
                     /*case 4: //fire
                         if (Mathf.Abs(vec2.y - vec1.y) > 50 && Mathf.Abs(vec2.y - vec1.y) > 750)
@@ -180,9 +198,7 @@ public class Dijkstra : MonoBehaviour {
                         cost = 1000;
                         break;
                 }
-                listtmp[tt] = cost+ listNodes[var];//crée la branche avec le cout
-                Debug.Log(listtmp[tt]);
-                Debug.Log(tt);
+                listtmp.Add(cost+ listNodes[vari]);//crée la branche avec le cout
                 if (true) //s'il n'est pas touché
                 {
                     
@@ -191,64 +207,28 @@ public class Dijkstra : MonoBehaviour {
                 {
                     tmp = tmp + 6; //sortir de la boucle et de la récursive
                 }
+                listtmp[listtmp.Count] = 1651;
             }
             if (tmp > 5)
             {
                 return tt; //remonter au parent;
             }
+
             tt++;
-            
         }
-        if (listtmp.Length > 80)//iteraion^5 -125
-        {
-            return System.Array.IndexOf(listtmp, listtmp.Min());//vérifier si on atteint approximativement le nombre d'iteration
-        }
-        Debug.Log("ici");
-        Debug.Log(System.Array.IndexOf(listtmp, listtmp[listtmp[DijkstraRec(listtmp)]]));
-        return System.Array.IndexOf(listtmp, listtmp[listtmp[DijkstraRec(listtmp)]]);//retourn le résultat récursif du chemin le plus cours ou du premier chemin menant à la victoire
 
+        if (listtmp.Count > iteration)
+        {
+            return listtmp.IndexOf(listtmp.Min());//vérifier si on atteint approximativement le nombre d'iteration
+        }
+        //   int tempo = DijkstraRec(listtmp);
+
+        //sortie de secours pour eviter l'explosion du stack 
+        if (leftside)
+            return 2;
+        else
+            return 3;
+        //listtmp.IndexOf(listtmp[]);//retourn le résultat récursif du chemin le plus cours ou du premier chemin menant à la victoire
 
     }
-
-    private void ActionSpaceShip(Transform ship)
-    {
-        int randAction;
-        randAction = Random.Range(0, 7);
-        switch (randAction)
-        {
-            case 0:         //UP
-                y += stepPerFrame;
-                break;
-            case 1:         //DOWN
-                y -= stepPerFrame;
-                break;
-            case 2:         //RIGHT
-                x += stepPerFrame;
-                break;
-            case 3:         //LEFT
-                x -= stepPerFrame;
-                break;
-            case 4:         //UP+R
-                y += stepPerFrame;
-                x += stepPerFrame;
-                break;
-            case 5:         //UP+L
-                y += stepPerFrame;
-                x -= stepPerFrame;
-                break;
-            case 6:         //DOWN+R
-                y -= stepPerFrame;
-                x += stepPerFrame;
-                break;
-            case 7:         //DOWN+L
-                y -= stepPerFrame;
-                x -= stepPerFrame;
-                break;
-        }
-
-        x += Random.Range(-stepPerFrame, stepPerFrame);
-        y += Random.Range(-stepPerFrame, stepPerFrame);
-        vec2 = new Vector2(x, y);
-    }
-
 }
