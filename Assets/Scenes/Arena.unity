@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 170112054}
   stepPerFrame: 0.1
+  left: 0
 --- !u!1 &313074604
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spaceShip: {fileID: 313074608}
   stepPerFrame: 0.1
+  left: 1
 --- !u!114 &313074606
 MonoBehaviour:
   m_ObjectHideFlags: 0
