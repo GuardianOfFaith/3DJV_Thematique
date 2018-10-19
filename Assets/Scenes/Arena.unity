@@ -219,7 +219,7 @@ MonoBehaviour:
   spaceShip: {fileID: 170112054}
   spaceShip2: {fileID: 313074608}
   stepPerFrame: 0.1
-  iteration: 1
+  iteration: 5
 --- !u!114 &170112056
 MonoBehaviour:
   m_ObjectHideFlags: 0
